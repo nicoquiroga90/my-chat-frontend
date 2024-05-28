@@ -61,7 +61,7 @@ export default function Home() {
           <div className="flex flex-col leading-tight">
             <div className="text-2xl mt-1 flex items-center">
               <input
-                className="text-gray-700 mr-3"
+                className="text-gray-700 mr-3 rounded p-1"
                 value={username}
                 onChange={(e) => setUserName(e.target.value)}
               />
@@ -84,7 +84,7 @@ export default function Home() {
             <div className="flex items-end justify-end">
               <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
                 <div>
-                  <span className="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white">
+                  <span className={`flex items-end justify-end ${msg.username === username ? 'bg-blue-600 text-white' : 'bg-green-900 text-white'} px-4 py-2 rounded-lg inline-block rounded-br-none`}>
                     {msg.message}
                   </span>
                 </div>
