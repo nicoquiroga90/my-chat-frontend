@@ -47,6 +47,7 @@ export default function Home() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "https://my-chat-seven-phi.vercel.app",
       },
       body: JSON.stringify({
         username,
