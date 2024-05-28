@@ -53,7 +53,8 @@ export default function Home() {
   };
 
   return (
-    <div className="flex-1 p-2 sm:p-6 justify-between flex flex-col h-screen">
+    <div className="p-2 sm:p-6  flex flex-col h-screen">
+
       <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
         <div className="relative flex items-center space-x-4">
           <Online />
@@ -76,7 +77,7 @@ export default function Home() {
 
       <div
         id="messages"
-        className="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch self-end"
+        className="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch my-15 min-h-[80%]"
       >
         {messages.map((msg, index) => (
           <div key={index} className="chat-message">
