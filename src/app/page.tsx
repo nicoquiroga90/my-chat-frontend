@@ -24,6 +24,10 @@ export default function Home() {
       cluster: "eu",
     });
 
+  pusher.connection.bind('error', function(err: any) {
+      console.error('WebSocket error:', err);
+    });
+
     const channel = pusher.subscribe("my-chat");
     channel.bind("message", function (data: Message) {
       setMessages((prevMessages) => [...prevMessages, data]);
