@@ -24,8 +24,8 @@ export default function Home() {
       cluster: "eu",
     });
 
-  pusher.connection.bind('error', function(err: any) {
-      console.error('WebSocket error:', err);
+    pusher.connection.bind("error", function (err: any) {
+      console.error("WebSocket error:", err);
     });
 
     const channel = pusher.subscribe("my-chat");
@@ -45,7 +45,10 @@ export default function Home() {
 
     await fetch("https://my-chat-backend-sable.vercel.app/api/messages", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "https://my-chat-seven-phi.vercel.app",
+      },
       body: JSON.stringify({
         username,
         message,
@@ -58,7 +61,6 @@ export default function Home() {
 
   return (
     <div className="p-2 sm:p-6  flex flex-col h-screen">
-
       <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
         <div className="relative flex items-center space-x-4">
           <Online />
@@ -88,7 +90,13 @@ export default function Home() {
             <div className="flex items-end justify-end">
               <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
                 <div>
-                  <span className={`flex items-end justify-end ${msg.username === username ? 'bg-blue-600 text-white' : 'bg-green-900 text-white'} px-4 py-2 rounded-lg inline-block rounded-br-none`}>
+                  <span
+                    className={`flex items-end justify-end ${
+                      msg.username === username
+                        ? "bg-blue-600 text-white"
+                        : "bg-green-900 text-white"
+                    } px-4 py-2 rounded-lg inline-block rounded-br-none`}
+                  >
                     {msg.message}
                   </span>
                 </div>
