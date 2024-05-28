@@ -43,11 +43,10 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await fetch("my-chat-backend-sable.vercel.app/api/messages", {
+    await fetch("https://my-chat-backend-sable.vercel.app/api/messages", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "my-chat-seven-phi.vercel.app",
       },
       body: JSON.stringify({
         username,
