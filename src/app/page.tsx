@@ -13,7 +13,7 @@ interface Message {
 }
 
 export default function Home() {
-  const [username, setUserName] = useState("Enter your username");
+  const [username, setUserName] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -78,6 +78,7 @@ export default function Home() {
                 className="text-gray-700 mr-3 rounded p-1"
                 value={username}
                 onChange={(e) => setUserName(e.target.value)}
+                placeholder='Enter your username'
               />
             </div>
             <span className="text-lg text-gray-600">Online</span>
