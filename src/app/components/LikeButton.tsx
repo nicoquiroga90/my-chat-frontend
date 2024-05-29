@@ -1,12 +1,21 @@
+import { useState } from 'react';
+
 function LikeButton() {
+  const [liked, setLiked] = useState(false);
+
+  const toggleLike = () => {
+    setLiked(!liked);
+  };
+
   return (
     <button
       type="button"
+      onClick={toggleLike}
       className="inline-flex items-center justify-center rounded-lg border h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        fill="none"
+        fill={liked ? 'red' : 'none'}
         viewBox="0 0 24 24"
         stroke="currentColor"
         className="h-6 w-6"

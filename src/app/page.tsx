@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import Pusher from "pusher-js";
-import SendAudio from "./components/SendAudio";
-import LikeButton from "./components/LikeButton";
-import Search from "./components/Search";
-import Online from "./components/Online";
+import { useEffect, useState } from 'react';
+import Pusher from 'pusher-js';
+import SendAudio from './components/SendAudio';
+import LikeButton from './components/LikeButton';
+import Search from './components/Search';
+import Online from './components/Online';
 
 interface Message {
   username: string;
@@ -16,6 +16,7 @@ export default function Home() {
   const [username, setUserName] = useState("Enter your username");
   const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     Pusher.logToConsole = false;
@@ -47,7 +48,6 @@ export default function Home() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "https://my-chat-seven-phi.vercel.app",
       },
       body: JSON.stringify({
         username,
@@ -59,8 +59,16 @@ export default function Home() {
     setMessage("");
   };
 
+  const handleSearch = (term: string) => {
+    setSearchTerm(term);
+  };
+
+  const filteredMessages = messages.filter((msg) =>
+    msg.message.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div className="p-2 sm:p-6  flex flex-col h-screen">
+    <div className="p-2 sm:p-6 flex flex-col h-screen">
       <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
         <div className="relative flex items-center space-x-4">
           <Online />
@@ -76,7 +84,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex items-center space-x-2">
-          <Search />
+          <Search onSearch={handleSearch} />
           <LikeButton />
         </div>
       </div>
@@ -85,7 +93,7 @@ export default function Home() {
         id="messages"
         className="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch my-15 min-h-[80%]"
       >
-        {messages.map((msg, index) => (
+        {filteredMessages.map((msg, index) => (
           <div key={index} className="chat-message">
             <div className="flex items-end justify-end">
               <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
