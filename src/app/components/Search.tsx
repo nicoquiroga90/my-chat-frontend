@@ -44,7 +44,7 @@ function Search( { onSearch }: SearchProps  ) {
           type="text"
           value={searchTerm}
           onChange={handleSearch}
-          className="ml-2 p-2 border rounded-lg"
+          className="ml-2 p-2 border rounded-lg flex flex-column"
           placeholder="Search messages"
         />
       )}

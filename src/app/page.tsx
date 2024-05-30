@@ -68,14 +68,14 @@ export default function Home() {
   );
 
   return (
-    <div className="p-2 sm:p-6 flex flex-col h-screen">
-      <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
-        <div className="relative flex items-center space-x-4">
+    <div className="flex flex-col h-screen ">
+      <div className="flex sm:items-center justify-between border-b-2 border-gray-200 p-5">
+        <div className="flex items-center pl-2">
           <Online />
-          <div className="flex flex-col leading-tight">
-            <div className="text-2xl mt-1 flex items-center">
+          <div className="flex flex-col ">
+            <div className=" sm:text-xs lg:text-xl md:text-xl">
               <input
-                className="text-gray-700 mr-3 rounded p-1"
+                className="text-gray-700 rounded p-1"
                 value={username}
                 onChange={(e) => setUserName(e.target.value)}
                 placeholder='Enter your username'
@@ -84,7 +84,7 @@ export default function Home() {
             <span className="text-lg text-gray-600">Online</span>
           </div>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-3">
           <Search onSearch={handleSearch} />
           <LikeButton />
         </div>
@@ -92,9 +92,9 @@ export default function Home() {
 
       <div
         id="messages"
-        className="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch my-15 min-h-[80%]"
+        className="flex flex-col overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch min-h-[75vh] sm:min-h-[80vh] "
       >
-        {filteredMessages.map((msg, index) => (
+         {filteredMessages.map((msg, index) => (
           <div key={index} className="chat-message">
             <div className="flex items-end justify-end">
               <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
@@ -117,24 +117,24 @@ export default function Home() {
       </div>
 
       <form
-        className="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0"
+        className="border-t-2 border-gray-200 p-3 item-center"
         onSubmit={handleSubmit}
       >
-        <div className="relative flex">
+        <div className="relative flex gap-2">
           <SendAudio />
 
           <input
             type="text"
             placeholder="Write your message!"
-            className="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-md py-3"
+            className="w-[80%] p-2 pl-12 focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 bg-gray-200 rounded-md"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
 
-          <div className="absolute right-0 items-center inset-y-0 hidden sm:flex">
+          <div className="items-center inset-y-0 sm:flex">
             <button
               type="submit"
-              className="inline-flex items-center justify-center rounded-lg px-4 py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none"
+              className="inline-flex items-center justify-center rounded-lg transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none p-2"
             >
               <span className="font-bold">Send</span>
               <svg
