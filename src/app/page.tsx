@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from 'react';
-import Pusher from 'pusher-js';
-import SendAudio from './components/SendAudio';
-import LikeButton from './components/LikeButton';
-import Search from './components/Search';
-import Online from './components/Online';
+import { useEffect, useState } from "react";
+import Pusher from "pusher-js";
+import SendAudio from "./components/SendAudio";
+import LikeButton from "./components/LikeButton";
+import Search from "./components/Search";
+import Online from "./components/Online";
 
 interface Message {
   username: string;
@@ -78,7 +78,7 @@ export default function Home() {
                 className="text-gray-700 rounded p-1"
                 value={username}
                 onChange={(e) => setUserName(e.target.value)}
-                placeholder='Enter your username'
+                placeholder="Enter your username"
               />
             </div>
             <span className="text-lg text-gray-600">Online</span>
@@ -94,7 +94,7 @@ export default function Home() {
         id="messages"
         className="flex flex-col overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch min-h-[75vh] sm:min-h-[80vh] "
       >
-         {filteredMessages.map((msg, index) => (
+        {filteredMessages.map((msg, index) => (
           <div key={index} className="chat-message">
             <div className="flex items-end justify-end">
               <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
@@ -134,7 +134,10 @@ export default function Home() {
           <div className="items-center inset-y-0 sm:flex">
             <button
               type="submit"
-              className="inline-flex items-center justify-center rounded-lg transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none p-2"
+              disabled={!message.trim()} 
+              className={`inline-flex items-center justify-center rounded-lg transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none p-2 ${
+                !message.trim() ? "bg-gray-300 cursor-not-allowed" : ""
+              }`}
             >
               <span className="font-bold">Send</span>
               <svg
